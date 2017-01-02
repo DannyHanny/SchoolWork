@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<title> Internal Workings </title>
+    <meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  </head>
+  
+	<body>
+		<div class="container">
+			<div class ="jumbotron">
+				<h1>Internal Workings </h1>
+			</div>
+			
+			<ul class="nav nav-pills">
+				<li class="active"><a data-toggle="pill" href="#CPU">CPU Registers</a></li>
+				<li><a data-toggle="pill" href="#bus">Buses</a></li>
+				<li><a data-toggle="pill" href="#fde">Fetch Decode Execute</a></li>
+				<li><a data-toggle="pill" href="#js">JavaScript</a></li>
+			</ul>
+			
+			<div class="tab-content">
+				<div id="CPU" class="tab-pane fade in active">
+					<h1>CPU Registers</h1>
+					<p>The CPU(Central Processing Unit) is the heart of the Computer. The CPU's main job is to access programs
+					held in the RAM and execute it's instructions. CPU have very high speeds meaning they can perform lots of 
+					instructions within a second.</p>
+					<div>
+						<img src ="CPU.png" class="img-rounded" alt="CPU">
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#alu">ALU</button>
+					</div>
+					<div id ="alu" class="collapse">
+					The ALU performs all mathematical calculations and makes logic comparisons.
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#cu">Control Unit</button>
+					</div>
+					<div id ="cu" class="collapse">
+					The control unit coordinates what the CPU does.
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#pc">Program Counter</button>
+					</div>
+					<div id ="pc" class="collapse">
+					The Program Counter holds the address of next instruction which will be executed. Could be the next instruction in the sequence or the address to jump to if the current instruction says to branch.
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#acc">Accumulator</button>
+					</div>
+					<div id ="acc" class="collapse">
+					A register for the short-term storage of arithmetic and logic data. 
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mar">Memory Address Register</button>
+					</div>
+					<div id ="mar" class="collapse">
+					Holds the address of the memory location in the RAM which either data is to be written to or fetched from.
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mdr">Memory Data Register</button>
+					</div>
+					<div id ="mdr" class="collapse">
+					Temporarily stores data fetched from or written to memory.
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#cir">Current Instruction Register</button>
+					</div>
+					<div id ="cir" class="collapse">
+					The current instruction being executed is stored here and is divided into operand and opcode.
+					</div>
+					
+				</div>
+				<div id="bus" class="tab-pane fade">
+					<h1> Buses </h1>
+					<div>
+						<img src="buses.png" class="img-rounded" alt="Buses">
+					</div>
+					<p>A bus is a set of parallel wires connecting two or more components of a computer.It will typically consist of 8, 16, 32 or 64 lines. There are three separate buses from which the processor
+					is connected to the RAM:</p>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#add">Address Bus</button>
+					</div>
+					<div id ="add" class="collapse">
+					The address bus carries the address of an instruction, the address of data to be stored or data to be retrieved to memory. This bus can only travel in one direction from the processor to memory.
+					The size of this size also determines the maximum possible memory capacity of the system.
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#data">Data Bus</button>
+					</div>
+					<div id ="data" class="collapse">
+					The data bus can move in any direction from the processor to memory unlike the address bus. As the name suggests it sends data between the processor and memory.
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#control">Control Bus</button>
+					</div>
+					<div id ="control" class="collapse">
+					The control bus controls various aspects of the CPU and memory for example it can make data on the data bus be written to an addressed location. The bus can be considered bidirections(data moving in two directions) 
+					as the signal can be carried in both directions but each individual line in the control bus is unidirectional(One direction in which can travel).
+					</div>
+					<p>
+					An interrupt can come from either software or hardware, this means that something require urgent attention so the processor stops it's current activity to deal with the interupt. The values of 
+					the program counter and of each register are put onto the system stack while the processor calls an Interrupt Service Routine to deal with the issue. Once the interrupt has been dealt the values
+					from the system stack are retrieved and the processes continue as normal. While dealing with the interupt all lower priority interupts are disabled.
+					</p>
+					
+					<div id ="fetch" class="collapse">
+					The Program Counter recieves the address of the next instruction and it is copied to the Memory Address Register.
+					</div>
+				</div>
+				<div id="fde" class="tab-pane fade">
+					<h1> The Fetch Decode Execute Cycle </h1>
+					<p>The fetch decode execute cycle is the processing which needed for a single instruction </p>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#fetch">Fetch</button>
+					</div>
+					<div id ="fetch" class="collapse">
+					The Program Counter recieves the address of the next instruction and it is copied to the Memory Address Register. The control unit will then load this address onto the address bus and a 
+					signal will be sent to main memory to read the instruction at this address.<br/>
+					The instruction goes across the data bus and is copied to the memory data register, program counter is then incremented so it holds the address of the next instruction. <br/>
+					Contents of the memory data register are copied to the current instruction register.
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#decode">Decode</button>
+					</div>
+					<div id ="decode" class="collapse">
+					The contents of the current instruction register are decode by the control unit. The instruction will then be spilit into opcode and operand. If the operand contains an address it will be copied to the 
+					memory address register.
+					</div>
+					
+					<div>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#execute">Execute</button>
+					</div>
+					<div id ="execute" class="collapse">
+						The opcode is carried out on the operand.
+					</div>
+				</div>
+				<div id="js" class="tab-pane fade">
+					<p> Enter in the proper order of the fetch-decode-execute into the boxes next to the statements. </p>
+					<form id="form1" action="form_action.asp">
+						<label for="instruction">Instruction in CIR decoded by Control Unit – split into opcode
+						and operand. If operand is an address this is copied to MAR.</label> 
+						<input id="instruction" type="text" name="instruction" value=""><br/>
+				
+						<label for="mdrToCIR">Contents of MDR copied to CIR.</label> <input id="mdrToCIR" type="text" name="mdrToCIR" value=""><br/>
+						
+						<label for="op">The instruction is carried out on the operand.</label> <input id="op" type="text" name="op" value=""><br/>
+						
+						<label for="copied">Address of next instruction copied from PC to MAR. Control
+						Unit loads address onto address bus, sends read signal on
+						control bus to read the instruction at the address.</label> <input id="copied"type="text" name="copied" value=""><br/>
+						
+						<label for="dataBus">Contents of address passed on data bus to MDR. PC
+						incremented to hold address of next instruction. </label> <input id="dataBus" type="text" name="dataBus" value=""><br/>
+						
+						<input type="button" onclick="check()" value="Submit">
+						<p id="errors"></p>
+					</form>
+					
+					<script>
+						function check() {
+							var four = document.getElementById("instruction");
+							document.getElementById("errors").innerHTML = "";
+							if (!four.value) {
+								document.getElementById("errors").innerHTML += "Nothing in first statement<br/>";
+							}
+							
+							var three = document.getElementById("mdrToCIR");
+							
+							if (!three.value) {
+								document.getElementById("errors").innerHTML += "Nothing in second statement<br/>";
+							}
+							
+							var five = document.getElementById("op");
+							if (!five.value) {
+								document.getElementById("errors").innerHTML += "Nothing in third statement<br/>";
+							}
+							
+							var one = document.getElementById("copied");
+							if (!one.value) {
+								document.getElementById("errors").innerHTML += "Nothing in fourth statement<br/>";
+							}
+							
+							var two = document.getElementById("dataBus");
+							if (!two.value) {
+								document.getElementById("errors").innerHTML += "Nothing in fifth statement<br/>";
+							}
+							
+							if (one.value === "1" && two.value === "2" && three.value === "3" && four.value === "4" && five.value === "5"){
+								var correct = "All correct!"
+								document.getElementById("win").innerHTML = correct;
+							}
+						}
+					</script>
+					<p id="win"> </p>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+</html>
