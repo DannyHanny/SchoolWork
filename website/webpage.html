@@ -127,9 +127,9 @@
 					<p>The fetch decode execute cycle is the processing which needed for a single instruction </p>
 					
 					<div>
-						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#fetch">Fetch</button>
+						<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#fet">Fetch</button>
 					</div>
-					<div id ="fetch" class="collapse">
+					<div id ="fet" class="collapse">
 					The Program Counter recieves the address of the next instruction and it is copied to the Memory Address Register. The control unit will then load this address onto the address bus and a 
 					signal will be sent to main memory to read the instruction at this address.<br/>
 					The instruction goes across the data bus and is copied to the memory data register, program counter is then incremented so it holds the address of the next instruction. <br/>
@@ -154,7 +154,7 @@
 				<div id="js" class="tab-pane fade">
 					<p> Enter in the proper order of the fetch-decode-execute into the boxes next to the statements. </p>
 					<form id="form1" action="form_action.asp">
-						<label for="instruction">Instruction in CIR decoded by Control Unit â€“ split into opcode
+						<label for="instruction">Instruction in CIR decoded by Control Unit – split into opcode
 						and operand. If operand is an address this is copied to MAR.</label> 
 						<input id="instruction" type="text" name="instruction" value=""><br/>
 				
